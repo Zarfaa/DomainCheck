@@ -1,25 +1,42 @@
-import Axios from "axios";
+import axios from "axios";
+import dotenv from "dotenv";
+dotenv.config();
+
 
 export const checkDomainAvailability = async (req, res) => {
   try {
+
     const inputJson = req.query.q;
     if (!inputJson) {
       return res.status(400).send("Missing 'q' parameter");
     }
 
-    const { url, fn, params } = JSON.parse(inputJson);
-    
+    const { fn, params } = JSON.parse(inputJson);
+
     if (fn !== "namecheap.domains.check") {
       return res.status(400).send("Unsupported function");
     }
 
-    const response = await Axios.get(url, {
-      params: { ...params, ApiUser: process.env.NAMECHEAP_USER, ApiKey: process.env.NAMECHEAP_API_KEY, Command: "namecheap.domains.check", ClientIp: process.env.CLIENT_IP },
-    });
+    const apiUrl = `https://api.sandbox.namecheap.com/xml.response`;
 
-    const result = response.data;
+    const queryParams = {
+      ApiUser: process.env.NAMECHEAP_USER,
+      ApiKey: process.env.NAMECHEAP_API_KEY,
+      UserName: process.env.NAMECHEAP_USER, 
+      ClientIp: process.env.CLIENT_IP,
+      Command: "namecheap.domains.check",
+      ...params,
+    };
 
-    const htmlResponse = `<html><head><meta my_output='${JSON.stringify(result)}'></head></html>`;
+
+    const response = await axios.get(apiUrl, { params: queryParams });
+
+
+    const resultXml = response.data;
+
+    const htmlResponse = `<html><head><meta my_output='${JSON.stringify(
+      resultXml
+    )}'></head></html>`;
 
     res.send(htmlResponse);
   } catch (error) {

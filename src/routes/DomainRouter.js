@@ -1,5 +1,5 @@
 import Express from "express";
-import { checkDomainAvailability } from "../controllers/domainController.js";
+import { checkDomainAvailability } from "../controller/DomainControler.js";
 
 const router = Express.Router();
 
