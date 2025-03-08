@@ -1,10 +1,13 @@
-import express from "express";
-import dotenv from "dotenv";
+import Express from "express";
+import domainRoutes from "./src/routes/domainRoutes.js";
 
-dotenv.config();
-
-const app = express();
+const app = Express();
 const PORT = process.env.PORT || 3000;
 
+app.use(Express.json()); 
+app.use("/", domainRoutes);
 
-app.listen(PORT, () => console.log(`Server running at http://localhost:${PORT}`));
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
+
