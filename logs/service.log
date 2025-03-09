@@ -1,0 +1,4 @@
+2025-03-08T16:25:31.782Z | 404 | GET / | Route: Unknown Route | 22.83ms
+2025-03-08T16:26:04.782Z | 404 | GET / | Route: Unknown Route | 3.34ms
+2025-03-08T16:27:27.407Z | 200 | GET /users | Route: /users | 4.22ms
+2025-03-08T16:27:27.545Z | 404 | GET /favicon.ico | Route: Unknown Route | 2.37ms

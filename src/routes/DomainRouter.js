@@ -1,8 +1,8 @@
 import Express from "express";
-import { checkDomainAvailability } from "../controller/DomainControler.js";
+import * as Controller from "../controller/DomainControler.js";
 
 const router = Express.Router();
 
-router.get("/", checkDomainAvailability);
+router.get("/", Controller.checkDomainAvailability);
 
 export default router;

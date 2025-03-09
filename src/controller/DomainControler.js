@@ -1,6 +1,6 @@
-import axios from "axios";
-import dotenv from "dotenv";
-dotenv.config();
+import Axios from "axios";
+import Dotenv from "dotenv";
+Dotenv.config();
 
 // **Helper function to send API responses**
 const sendResponse = (res, status, message, data = null, error = null) => {
@@ -21,7 +21,7 @@ const checkNamecheapDomain = async (params) => {
   };
 
   try {
-    const response = await axios.get(apiUrl, { params: queryParams });
+    const response = await Axios.get(apiUrl, { params: queryParams });
     return response.data;
   } catch (error) {
     throw error.response?.data || error.message; 
@@ -39,7 +39,7 @@ const checkGoDaddyDomain = async (domainName) => {
   };
 
   try {
-    const response = await axios.get(apiUrl, { headers });
+    const response = await Axios.get(apiUrl, { headers });
     return response.data;
   } catch (error) {
     throw error.response?.data || error.message; 
