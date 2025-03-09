@@ -2,9 +2,13 @@ import Axios from "axios";
 import Dotenv from "dotenv";
 Dotenv.config();
 
-// **Helper function to send API responses**
-const sendResponse = (res, status, message, data = null, error = null) => {
-  res.status(status === "success" ? 200 : 400).json({ status, message, data, error });
+// **Helper function to send API responses as meta tags**
+const sendResponse = (res, status, data = null, error = null) => {
+  res.status(status === "success" ? 200 : 400).send(
+    `<meta name="viewport" content="width=device-width, initial-scale=1">
+        ${data ? `<meta name="data" content='${JSON.stringify(data)}'>` : ""}
+        ${error ? `<meta name="error" content='${error}'>` : ""}`
+  );
 };
 
 // **Namecheap API Logic**
@@ -68,8 +72,7 @@ export const checkDomainAvailability = async (req, res) => {
         return sendResponse(res, "error", "Unsupported function");
     }
 
-    sendResponse(res, "success", `${fn.split(".")[0]} responded successfully`, result);
-
+    sendResponse(res, "success", result);
   } catch (error) {
     console.error("Error:", error);
     sendResponse(res, "error", "An unexpected error occurred", null, error);

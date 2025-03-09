@@ -2,3 +2,6 @@
 2025-03-08T16:26:04.782Z | 404 | GET / | Route: Unknown Route | 3.34ms
 2025-03-08T16:27:27.407Z | 200 | GET /users | Route: /users | 4.22ms
 2025-03-08T16:27:27.545Z | 404 | GET /favicon.ico | Route: Unknown Route | 2.37ms
+2025-03-09T18:38:31.992Z | 200 | GET /?q={%22fn%22:%22namecheap.domains.check%22,%22params%22:{%22DomainList%22:%22shein.com%22}} | Route: / | 2300.48ms
+2025-03-09T18:38:51.271Z | 200 | GET /?q={%22fn%22:%22godaddy.domains.check%22,%22params%22:{%22domainName%22:%22desianddude.com%22}} | Route: / | 2162.96ms
+2025-03-09T18:40:13.401Z | 200 | GET /?q={%22fn%22:%22godaddy.domains.check%22,%22params%22:{%22domainName%22:%22desianddude.com%22}} | Route: / | 1976.28ms
