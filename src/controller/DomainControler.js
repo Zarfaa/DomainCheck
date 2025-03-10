@@ -5,9 +5,13 @@ Dotenv.config();
 // **Helper function to send API responses as meta tags**
 const sendResponse = (res, status, data = null, error = null) => {
   res.status(status === "success" ? 200 : 400).send(
-    `<meta name="viewport" content="width=device-width, initial-scale=1">
-        ${data ? `<meta name="data" content='${JSON.stringify(data)}'>` : ""}
-        ${error ? `<meta name="error" content='${error}'>` : ""}`
+    `<html>
+<head>
+        ${data ? `<meta name="my_output" content='${JSON.stringify(data)}'>` : ""}
+        ${error ? `<meta name="error" content='${error}'>` : ""}
+        </head>
+<body></body>
+</html>`
   );
 };
 
@@ -28,7 +32,7 @@ const checkNamecheapDomain = async (params) => {
     const response = await Axios.get(apiUrl, { params: queryParams });
     return response.data;
   } catch (error) {
-    throw error.response?.data || error.message; 
+    throw error.response?.data || error.message;
   }
 };
 
@@ -46,7 +50,7 @@ const checkGoDaddyDomain = async (domainName) => {
     const response = await Axios.get(apiUrl, { headers });
     return response.data;
   } catch (error) {
-    throw error.response?.data || error.message; 
+    throw error.response?.data || error.message;
   }
 };
 
